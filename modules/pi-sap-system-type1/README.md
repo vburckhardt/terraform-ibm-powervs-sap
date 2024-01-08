@@ -2,15 +2,15 @@
 
 The Power Virtual Server for SAP module automates the following tasks:
 
-- Creates a new private subnet for SAP communication for entire landscape and attaches it to cloud connections(in Non PER DC).
-- Creates and configures one PowerVS instance for SAP HANA that is based on best practices.
-- Creates and configures multiple PowerVS instances for SAP NetWeaver that are based on best practices.
-- Creates and configures one optional PowerVS instance(sharefs) that can be used for sharing SAP files between other system instances.
-- Connects all created PowerVS instances to a proxy server that is specified by IP address or hostname.
-- Optionally connects all created PowerVS instances to an NTP server and DNS forwarder that are specified by IP address or hostname.
+- Creates a new private subnet for SAP communication for the entire landscape and attaches it to cloud connections (in Non-PER DC).
+- Creates and configures one PowerVS instance for SAP HANA based on best practices.
+- Creates and configures multiple PowerVS instances for SAP NetWeaver based on best practices.
+- Creates and configures one optional PowerVS instance (sharefs) that can be used for sharing SAP files between other system instances.
+- Connects all created PowerVS instances to a proxy server specified by IP address or hostname.
+- Optionally connects all created PowerVS instances to an NTP server and DNS forwarder specified by IP address or hostname.
 - Optionally configures a shared NFS directory on all created PowerVS instances.
-- Post instance provisioning, ansible galaxy collection roles from [IBM](https://galaxy.ansible.com/ui/repo/published/ibm/power_linux_sap/): `power_linux_sap` are executed.
-- Tested with RHEL8.4, RHEL 8.6, SLES15-SP4 and SLES15-SP6 images.
+- Post-instance provisioning, Ansible Galaxy collection roles from [IBM](https://galaxy.ansible.com/ui/repo/published/ibm/power_linux_sap/) are executed: `power_linux_sap`.
+- Tested with RHEL8.4, RHEL 8.6, SLES15-SP4, and SLES15-SP6 images.
 
 ## Notes:
 - **Does not install any SAP softwares or solutions.**
@@ -66,7 +66,7 @@ The Power Virtual Server for SAP module automates the following tasks:
 | <a name="input_sap_domain"></a> [sap\_domain](#input\_sap\_domain) | SAP network domain name. | `string` | `"sap.com"` | no |
 | <a name="input_sap_network_services_config"></a> [sap\_network\_services\_config](#input\_sap\_network\_services\_config) | Configures network services NTP, NFS and DNS on PowerVS instance. Requires 'pi\_instance\_init\_linux' to be specified as internet access is required to download ansible collection [ibm.power\_linux\_sap collection](https://galaxy.ansible.com/ui/repo/published/ibm/power_linux_sap/) to configure these services. | <pre>object(<br>    {<br>      nfs = object({ enable = bool, nfs_server_path = string, nfs_client_path = string })<br>      dns = object({ enable = bool, dns_server_ip = string })<br>      ntp = object({ enable = bool, ntp_server_ip = string })<br>    }<br>  )</pre> | <pre>{<br>  "dns": {<br>    "dns_server_ip": "",<br>    "enable": false<br>  },<br>  "nfs": {<br>    "enable": false,<br>    "nfs_client_path": "",<br>    "nfs_server_path": ""<br>  },<br>  "ntp": {<br>    "enable": false,<br>    "ntp_server_ip": ""<br>  }<br>}</pre> | no |
 
-### Outputs
+Outputs
 
 | Name | Description |
 |------|-------------|
